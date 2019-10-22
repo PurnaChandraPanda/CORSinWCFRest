@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>test page</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+    <h1>Values service - test page</h1>    
+    <p>
+        <input type="button" id="post" value="Add" />
+    </p>
+    <br/>
+    <div id="result"></div>
+    <script type="text/javascript">
+        var valuesAddress = "http://localhost:1797/Service1.svc";
+
+        $("#post").click(function () {
+            var customer = {
+                "FirstName": "Purna",
+                "Id": "2123",
+                "LastName": "Panda",
+                "SSN": "SSN12109"
+            };
+            $.ajax({
+                url: valuesAddress + "/add",
+                type: "POST",
+                contentType: "application/json",
+                dataType: 'json',
+                data: JSON.stringify(customer),
+                success: function (result) {
+                    $("#result").text(JSON.stringify(result));
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    $("#result").text(textStatus);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
