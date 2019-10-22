@@ -3,16 +3,16 @@
 - On the server side, the logic is in [Application_BeginRequest](https://github.com/PurnaChandraPanda/CORSinWCFRest/blob/master/src/server/WcfService1/Global.asax.cs#L23) API.
 
 ```
-		protected void Application_BeginRequest(object sender, EventArgs e)
-		{
+        protected void Application_BeginRequest(object sender, EventArgs e)
+        {
 +            HttpContext.Current.Response.AddHeader("Access-Control-Allow-Origin", "*");
-+            HttpContext.Current.Response.AddHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-+            HttpContext.Current.Response.AddHeader("Access-Control-Allow-Headers", "Content-Type");
+            HttpContext.Current.Response.AddHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+            HttpContext.Current.Response.AddHeader("Access-Control-Allow-Headers", "Content-Type");
 
-+            if (HttpContext.Current.Request.HttpMethod == "OPTIONS") {
-+                HttpContext.Current.Response.End();
-			}
-		}
+            if (HttpContext.Current.Request.HttpMethod == "OPTIONS") {
+                HttpContext.Current.Response.End();
+            }
+        }
 ```
 
 - The client side logic is in [testpage.html](https://github.com/PurnaChandraPanda/CORSinWCFRest/blob/master/src/client/WebApplication1/wwwroot/testpage.html#L18) page.
