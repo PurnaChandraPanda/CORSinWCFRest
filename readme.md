@@ -43,3 +43,11 @@
     });
 ```
 
+- Regarding running the projct:
+-- WcfService1 project can be run without debug mode
+-- Make sure /help page is accessible
+-- Update the URL in testpage.html with new value [here](https://github.com/PurnaChandraPanda/CORSinWCFRest/blob/master/src/client/WebApplication1/wwwroot/testpage.html#L16)
+-- Run the WebApplication1 page in debug mode
+-- You would find POST request for the service completing without issues
+
+
