@@ -2,44 +2,44 @@
 - Basically, for CORS, the server side app needs to allow certain headers in response.
 - On the server side, the logic is in [Application_BeginRequest](https://github.com/PurnaChandraPanda/CORSinWCFRest/blob/master/src/server/WcfService1/Global.asax.cs#L23) API.
 
-	```
-			protected void Application_BeginRequest(object sender, EventArgs e)
-			{
-	+            HttpContext.Current.Response.AddHeader("Access-Control-Allow-Origin", "*");
-	+            HttpContext.Current.Response.AddHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-	+            HttpContext.Current.Response.AddHeader("Access-Control-Allow-Headers", "Content-Type");
+```
+		protected void Application_BeginRequest(object sender, EventArgs e)
+		{
++            HttpContext.Current.Response.AddHeader("Access-Control-Allow-Origin", "*");
++            HttpContext.Current.Response.AddHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
++            HttpContext.Current.Response.AddHeader("Access-Control-Allow-Headers", "Content-Type");
 
-	+            if (HttpContext.Current.Request.HttpMethod == "OPTIONS") {
-	+                HttpContext.Current.Response.End();
-				}
++            if (HttpContext.Current.Request.HttpMethod == "OPTIONS") {
++                HttpContext.Current.Response.End();
 			}
-	```
+		}
+```
 
 - The client side logic is in [testpage.html](https://github.com/PurnaChandraPanda/CORSinWCFRest/blob/master/src/client/WebApplication1/wwwroot/testpage.html#L18) page.
 
-	```
-	    var valuesAddress = "http://localhost:1797/Service1.svc";
+```
+    var valuesAddress = "http://localhost:1797/Service1.svc";
 
-        $("#post").click(function () {
-            var customer = {
-                "FirstName": "Purna",
-                "Id": "2123",
-                "LastName": "Panda",
-                "SSN": "SSN12109"
-            };
-            $.ajax({
-                url: valuesAddress + "/add",
-    +            type: "POST",
-                contentType: "application/json",
-    +            dataType: 'json',
-    +            data: JSON.stringify(customer),
-                success: function (result) {
-    +                $("#result").text(JSON.stringify(result));
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    $("#result").text(textStatus);
-                }
-            });
+    $("#post").click(function () {
+        var customer = {
+            "FirstName": "Purna",
+            "Id": "2123",
+            "LastName": "Panda",
+            "SSN": "SSN12109"
+        };
+        $.ajax({
+            url: valuesAddress + "/add",
++            type: "POST",
+            contentType: "application/json",
++            dataType: 'json',
++            data: JSON.stringify(customer),
+            success: function (result) {
++                $("#result").text(JSON.stringify(result));
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                $("#result").text(textStatus);
+            }
         });
-	```
+    });
+```
 
