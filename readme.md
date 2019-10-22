@@ -5,7 +5,7 @@
 ```
         protected void Application_BeginRequest(object sender, EventArgs e)
         {
-+            HttpContext.Current.Response.AddHeader("Access-Control-Allow-Origin", "*");
+            HttpContext.Current.Response.AddHeader("Access-Control-Allow-Origin", "*");
             HttpContext.Current.Response.AddHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
             HttpContext.Current.Response.AddHeader("Access-Control-Allow-Headers", "Content-Type");
 
@@ -29,12 +29,12 @@
         };
         $.ajax({
             url: valuesAddress + "/add",
-+            type: "POST",
+            type: "POST",
             contentType: "application/json",
-+            dataType: 'json',
-+            data: JSON.stringify(customer),
+            dataType: 'json',
+            data: JSON.stringify(customer),
             success: function (result) {
-+                $("#result").text(JSON.stringify(result));
+                $("#result").text(JSON.stringify(result));
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 $("#result").text(textStatus);
